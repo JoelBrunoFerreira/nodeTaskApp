@@ -75,7 +75,7 @@ userSchema.methods.toJSON = function () {
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, 'thisismysecret');
+    const token = jwt.sign({ _id: user._id.toString() }, '*******************');
 
     user.tokens = user.tokens.concat({ token: token });
     await user.save();
@@ -99,8 +99,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user;
 };
 
-// Middleware  ---> pre OR post
-// Hash the plain text password before saving
+// Middleware
 userSchema.pre('save', async function (next) {
     const user = this;
 
