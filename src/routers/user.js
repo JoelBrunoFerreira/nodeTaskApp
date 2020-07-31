@@ -56,24 +56,6 @@ router.get('/users/me', auth, async (req, res) => {
    res.send(req.user);
 });
 
-/*
-// GET an specific user by ID
-router.get('/users/:id', async (req, res) => {
-    const _id = req.params.id;
-
-    try {
-        const user = await User.findById(_id);
-        
-        if (!user) {
-            return res.status(404).send();
-        }
-        res.send(user);
-    } catch (error) {
-        res.status(500).send();
-    }
-});
-*/
-
 // PUT - Update user
 router.put('/users/me', auth, async (req, res) => {
     const updates = Object.keys(req.body);
@@ -110,7 +92,6 @@ router.delete('/users/me', auth, async (req, res) => {
 
 // File uploading with Multer
 const upload = multer({
-    // dest: 'avatars',
     limits: {
         fileSize: 1000000 // =1MB
     },
